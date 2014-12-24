@@ -16,13 +16,13 @@
 */
 -->
 <idea-plugin version="4">
-    <id>pl.charmas.parcelablegenerator</id>
-    <name>Android Parcelable code generator.</name>
-    <version>0.7</version>
-    <vendor email="michal@charmas.pl" url="http://blog.charmas.pl">Michal Charmas</vendor>
+    <id>io.dwak.tracker.generator</id>
+    <name>Tracker Boilerplate generator.</name>
+    <version>0.1</version>
+    <vendor email="dinosaurwithakatana@gmail.com" url="http://www.dwak.io">Dinosaur With a Katana</vendor>
 
     <description><![CDATA[
-            Plugin which generates Android Parcelable boilerplate code for you.
+    Plugin that generates Tracker boilerplate for you
       ]]></description>
 
     <change-notes><![CDATA[
@@ -48,9 +48,9 @@
 
     <actions>
         <!-- Add your actions here -->
-        <action id="generateParcelableNew" class="pl.charmas.parcelablegenerator.ParcelableAction"
-                text="Parcelable"
-                description="Generates Android Parcelable based on class fields">
+        <action id="generateTracker" class="io.dwak.trackergenerator.TrackerAction"
+                text="Tracker Getters and Setters"
+                description="Generates AndroidTracker getters and setters based on class fields">
             <add-to-group group-id="GenerateGroup" anchor="last"/>
         </action>
     </actions>

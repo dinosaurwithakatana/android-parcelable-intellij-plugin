@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package pl.charmas.parcelablegenerator;
+package io.dwak.trackergenerator;
 
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
@@ -29,7 +29,7 @@ import com.intellij.psi.util.PsiTreeUtil;
 
 import java.util.List;
 
-public class ParcelableAction extends AnAction {
+public class TrackerAction extends AnAction {
 
     @Override
     public void actionPerformed(AnActionEvent e) {
@@ -39,11 +39,11 @@ public class ParcelableAction extends AnAction {
         dlg.show();
 
         if (dlg.isOK()) {
-            generateParcelable(psiClass, dlg.getSelectedFields());
+            generateTrackerCode(psiClass, dlg.getSelectedFields());
         }
     }
 
-    private void generateParcelable(final PsiClass psiClass, final List<PsiField> fields) {
+    private void generateTrackerCode(final PsiClass psiClass, final List<PsiField> fields) {
         new WriteCommandAction.Simple(psiClass.getProject(), psiClass.getContainingFile()) {
             @Override
             protected void run() throws Throwable {

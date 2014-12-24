@@ -1,4 +1,4 @@
-package pl.charmas.parcelablegenerator.util;
+package io.dwak.trackergenerator.util;
 
 import com.intellij.psi.PsiClass;
 import com.intellij.psi.PsiClassType;

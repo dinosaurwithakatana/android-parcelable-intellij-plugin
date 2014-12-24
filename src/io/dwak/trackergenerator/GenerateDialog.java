@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package pl.charmas.parcelablegenerator;
+package io.dwak.trackergenerator;
 
 import com.intellij.ide.util.DefaultPsiElementCellRenderer;
 import com.intellij.openapi.ui.DialogWrapper;
@@ -39,7 +39,7 @@ public class GenerateDialog extends DialogWrapper {
 
     protected GenerateDialog(PsiClass psiClass) {
         super(psiClass.getProject());
-        setTitle("Select fields for Parcelable generation");
+        setTitle("Select fields for Tracker generation");
 
         PsiField[] allFields = psiClass.getAllFields();
         PsiField[] fields = new PsiField[allFields.length];
@@ -64,7 +64,7 @@ public class GenerateDialog extends DialogWrapper {
         decorator.disableAddAction();
         JPanel panel = decorator.createPanel();
 
-        myComponent = LabeledComponent.create(panel, "Fields to include in Parcelable");
+        myComponent = LabeledComponent.create(panel, "Fields to include in Tracker");
 
         init();
     }
