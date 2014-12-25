@@ -13,4 +13,4 @@ This tool generates the boilerplate for data binding when using [AndroidTracker]
 
 Just press **ALT + Insert** (or your equivalent keybinding for code generation) in your editor and select **Tracker Getters and Setters**. It allows you to select the fields to be parceled.
 
-![Screencast](https://raw.githubusercontent.com/dinosaurwithakatana/android-tracker-intellij-plugin/master/android-tracker-intellij-screencast.webm)
+![Screencast](https://raw.githubusercontent.com/dinosaurwithakatana/android-tracker-intellij-plugin/master/android-tracker-intellij-screencast.gif)
