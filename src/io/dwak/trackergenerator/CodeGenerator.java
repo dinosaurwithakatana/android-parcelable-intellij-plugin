@@ -38,8 +38,19 @@ public class CodeGenerator {
 
     }
 
+    private String checkFieldPrefixes(String fieldName){
+        String newFieldName = fieldName;
+        if(fieldName.charAt(0) == 'm'
+                && Character.isLowerCase(fieldName.charAt(0))
+                && Character.isUpperCase(fieldName.charAt(1))){
+            newFieldName = fieldName.substring(1, fieldName.length());
+        }
+
+        return newFieldName;
+    }
+
     private String generateGetters(PsiField field, PsiClass psiClass){
-        String fieldName = field.getName();
+        String fieldName = checkFieldPrefixes(field.getName());
         StringBuilder sb = new StringBuilder(
                 "public "+ field.getType().getCanonicalText()
                         + " get"+ fieldName.substring(0, 1).toUpperCase() + fieldName.substring(1, fieldName.length())+ "() {");
@@ -51,9 +62,9 @@ public class CodeGenerator {
     }
 
     private String generateSetters(PsiField field, PsiClass psiClass){
-        String fieldName = field.getName();
+        String fieldName = checkFieldPrefixes(field.getName());
         StringBuilder sb = new StringBuilder(
-                "public " + field.getType().getCanonicalText()
+                "public void"
                         + " set" + fieldName.substring(0, 1).toUpperCase() + fieldName.substring(1, fieldName.length())
                         + "(" + field.getType().getCanonicalText() + " " + fieldName + ") {");
         sb.append("this."+ fieldName + " = " + fieldName + ";");

@@ -16,8 +16,8 @@
 */
 -->
 <idea-plugin version="4">
-    <id>io.dwak.tracker.generator</id>
-    <name>Tracker Boilerplate generator.</name>
+    <id>io.dwak.plugin.tracker.generator</id>
+    <name>Tracker boilerplate generator.</name>
     <version>0.1</version>
     <vendor email="dinosaurwithakatana@gmail.com" url="http://www.dwak.io">Dinosaur With a Katana</vendor>
 
