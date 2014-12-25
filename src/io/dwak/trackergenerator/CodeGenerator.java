@@ -51,11 +51,25 @@ public class CodeGenerator {
 
     private String generateGetters(PsiField field, PsiClass psiClass){
         String fieldName = checkFieldPrefixes(field.getName());
+        String methodPrefix = field.getType().equals(PsiType.BOOLEAN)
+                ? "is"
+                : "get";
+
+        boolean isBooleanWithPrefix = false;
+        if(fieldName.toLowerCase().startsWith("is")){
+            isBooleanWithPrefix = true;
+        }
+
+        String fieldNameForMethodName = fieldName.substring(0, 1).toUpperCase() + fieldName.substring(1, fieldName.length());
+        if(isBooleanWithPrefix){
+            fieldNameForMethodName = fieldNameForMethodName.substring(2, fieldNameForMethodName.length());
+        }
         StringBuilder sb = new StringBuilder(
-                "public "+ field.getType().getCanonicalText()
-                        + " get"+ fieldName.substring(0, 1).toUpperCase() + fieldName.substring(1, fieldName.length())+ "() {");
-        sb.append(fieldName + "Dep.depend();");
-        sb.append("return " + fieldName + ";");
+                "public " + field.getType().getCanonicalText()
+                        + " "
+                        + methodPrefix + fieldNameForMethodName + "() {");
+        sb.append(field.getName()+ "Dep.depend();");
+        sb.append("return " + field.getName()+ ";");
         sb.append("}");
 
         return sb.toString();
@@ -63,12 +77,13 @@ public class CodeGenerator {
 
     private String generateSetters(PsiField field, PsiClass psiClass){
         String fieldName = checkFieldPrefixes(field.getName());
+        final String setterParameter = fieldName.substring(0, 1).toLowerCase() + fieldName.substring(1, fieldName.length());
         StringBuilder sb = new StringBuilder(
                 "public void"
                         + " set" + fieldName.substring(0, 1).toUpperCase() + fieldName.substring(1, fieldName.length())
-                        + "(" + field.getType().getCanonicalText() + " " + fieldName + ") {");
-        sb.append("this."+ fieldName + " = " + fieldName + ";");
-        sb.append(fieldName + "Dep.changed();");
+                        + "(" + field.getType().getCanonicalText() + " " + setterParameter + ") {");
+        sb.append("this."+ field.getName() + " = " + setterParameter + ";");
+        sb.append(field.getName()+ "Dep.changed();");
         sb.append("}");
 
         return sb.toString();
