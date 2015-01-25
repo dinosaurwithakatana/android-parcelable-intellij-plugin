@@ -13,11 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.dwak.trackergenerator;
+package io.dwak.reactor.intellij.plugin;
 
 import com.intellij.psi.*;
 import com.intellij.psi.codeStyle.JavaCodeStyleManager;
-import com.intellij.psi.codeStyle.VariableKind;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -89,9 +88,9 @@ public class CodeGenerator {
         return sb.toString();
     }
 
-    private String generateTrackerDependencyFields(PsiField field, PsiClass psiClass){
+    private String generateReactorDependencyFields(PsiField field, PsiClass psiClass){
         String fieldName = field.getName();
-        StringBuilder sb = new StringBuilder("private TrackerDependency " + fieldName + "Dep = new TrackerDependency();");
+        StringBuilder sb = new StringBuilder("private ReactorDependency " + fieldName + "Dep = new ReactorDependency();");
         return sb.toString();
     }
 
@@ -104,7 +103,7 @@ public class CodeGenerator {
         for (PsiField mField : mFields) {
             psiMethods.add(elementFactory.createMethodFromText(generateGetters(mField, mClass), mClass));
             psiMethods.add(elementFactory.createMethodFromText(generateSetters(mField, mClass), mClass));
-            psiFields.add(elementFactory.createFieldFromText(generateTrackerDependencyFields(mField, mClass), mClass));
+            psiFields.add(elementFactory.createFieldFromText(generateReactorDependencyFields(mField, mClass), mClass));
         }
 
         JavaCodeStyleManager styleManager = JavaCodeStyleManager.getInstance(mClass.getProject());

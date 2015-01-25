@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.dwak.trackergenerator;
+package io.dwak.reactor.intellij.plugin;
 
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
@@ -29,7 +29,7 @@ import com.intellij.psi.util.PsiTreeUtil;
 
 import java.util.List;
 
-public class TrackerAction extends AnAction {
+public class ReactorAction extends AnAction {
 
     @Override
     public void actionPerformed(AnActionEvent e) {

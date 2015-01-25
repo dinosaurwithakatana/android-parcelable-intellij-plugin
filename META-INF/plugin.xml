@@ -16,13 +16,13 @@
 */
 -->
 <idea-plugin version="4">
-    <id>io.dwak.plugin.tracker.generator</id>
-    <name>Tracker boilerplate generator.</name>
-    <version>0.1</version>
+    <id>io.dwak.reactor.intellij.plugin</id>
+    <name>Reactor boilerplate generator.</name>
+    <version>0.2</version>
     <vendor email="dinosaurwithakatana@gmail.com" url="http://www.dwak.io">Dinosaur With a Katana</vendor>
 
     <description><![CDATA[
-    Plugin that generates Tracker boilerplate for you
+    Plugin that generates Reactor boilerplate for you
       ]]></description>
 
     <change-notes><![CDATA[
@@ -48,9 +48,9 @@
 
     <actions>
         <!-- Add your actions here -->
-        <action id="generateTracker" class="io.dwak.trackergenerator.TrackerAction"
-                text="Tracker Getters and Setters"
-                description="Generates AndroidTracker getters and setters based on class fields">
+        <action id="generateReactor" class="io.dwak.reactor.intellij.plugin.ReactorAction"
+                text="Reactor Getters and Setters"
+                description="Generates Reactor getters and setters based on class fields">
             <add-to-group group-id="GenerateGroup" anchor="last"/>
         </action>
     </actions>

@@ -1,4 +1,4 @@
-package io.dwak.trackergenerator.util;
+package io.dwak.reactor.intellij.plugin.util;
 
 import com.intellij.psi.PsiClass;
 import com.intellij.psi.PsiClassType;
