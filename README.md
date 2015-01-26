@@ -13,4 +13,4 @@ This tool generates the boilerplate for data binding when using [Reactor](https:
 
 Just press **ALT + Insert** (or your equivalent keybinding for code generation) in your editor and select **Reactor Getters and Setters**. It allows you to select the fields to be generated.
 
-![Screencast](https://raw.githubusercontent.com/dinosaurwithakatana/android-tracker-intellij-plugin/master/android-tracker-intellij-screencast.gif)
+![Screencast](https://raw.githubusercontent.com/dinosaurwithakatana/android-reactor-intellij-plugin/master/android-reactor-intellij-screencast.gif)
