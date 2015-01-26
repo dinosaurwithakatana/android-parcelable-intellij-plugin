@@ -4,7 +4,7 @@ This tool generates the boilerplate for data binding when using [Reactor](https:
 
 ## Installation
 
- 0. Download `android-reactor-intellij-plugin` [release](https://github.com/dinosaurwithakatana/android-reactor-intellij-plugin/releases/tag/v0.2)
+ 0. Download `android-reactor-intellij-plugin` [release](https://github.com/dinosaurwithakatana/android-reactor-intellij-plugin/releases/tag/v0.2) or from the Intellij plugin [repository](https://plugins.jetbrains.com/plugin/7667?pr=)
  0. Open IntelliJ/Android Studio
  0. *Preferences* -> *Plugins* -> *Install plugin from disk...*.
  0. Choose the downloaded jar file
