@@ -17,8 +17,8 @@
 -->
 <idea-plugin version="4">
     <id>io.dwak.reactor.intellij.plugin</id>
-    <name>Reactor boilerplate generator.</name>
-    <version>0.2</version>
+    <name>Reactor boilerplate generator</name>
+    <version>0.4</version>
     <vendor email="dinosaurwithakatana@gmail.com" url="http://www.dwak.io">Dinosaur With a Katana</vendor>
 
     <description><![CDATA[

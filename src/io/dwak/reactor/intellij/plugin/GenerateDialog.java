@@ -39,7 +39,7 @@ public class GenerateDialog extends DialogWrapper {
 
     protected GenerateDialog(PsiClass psiClass) {
         super(psiClass.getProject());
-        setTitle("Select fields for Tracker generation");
+        setTitle("Select ReactorVar field for code generation");
 
         PsiField[] allFields = psiClass.getAllFields();
         PsiField[] fields = new PsiField[allFields.length];
@@ -48,7 +48,8 @@ public class GenerateDialog extends DialogWrapper {
 
         for (PsiField field : allFields) {
             // Exclude static fields
-            if (!field.hasModifierProperty(PsiModifier.STATIC)) {
+            if (!field.hasModifierProperty(PsiModifier.STATIC)
+                    && field.getType().getCanonicalText().contains("ReactorVar")) {
                 fields[i++] = field;
             }
         }
@@ -64,7 +65,7 @@ public class GenerateDialog extends DialogWrapper {
         decorator.disableAddAction();
         JPanel panel = decorator.createPanel();
 
-        myComponent = LabeledComponent.create(panel, "Fields to include in Tracker");
+        myComponent = LabeledComponent.create(panel, "Fields to include in Reactor");
 
         init();
     }

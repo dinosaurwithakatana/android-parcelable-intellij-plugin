@@ -17,6 +17,7 @@ package io.dwak.reactor.intellij.plugin;
 
 import com.intellij.psi.*;
 import com.intellij.psi.codeStyle.JavaCodeStyleManager;
+import groovy.ui.SystemOutputInterceptor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,12 +64,14 @@ public class CodeGenerator {
         if(isBooleanWithPrefix){
             fieldNameForMethodName = fieldNameForMethodName.substring(2, fieldNameForMethodName.length());
         }
+        String type = field.getType().getPresentableText();
+        type = type.replace("ReactorVar<", "");
+        type = type.replace(">", "");
         StringBuilder sb = new StringBuilder(
-                "public " + field.getType().getCanonicalText()
+                "public " + type
                         + " "
                         + methodPrefix + fieldNameForMethodName + "() {");
-        sb.append(field.getName()+ "Dep.depend();");
-        sb.append("return " + field.getName()+ ";");
+        sb.append("return " + field.getName()+ ".getValue();");
         sb.append("}");
 
         return sb.toString();
@@ -77,20 +80,16 @@ public class CodeGenerator {
     private String generateSetters(PsiField field, PsiClass psiClass){
         String fieldName = checkFieldPrefixes(field.getName());
         final String setterParameter = fieldName.substring(0, 1).toLowerCase() + fieldName.substring(1, fieldName.length());
+        String type = field.getType().getPresentableText();
+        type = type.replace("ReactorVar<", "");
+        type = type.replace(">", "");
         StringBuilder sb = new StringBuilder(
                 "public void"
                         + " set" + fieldName.substring(0, 1).toUpperCase() + fieldName.substring(1, fieldName.length())
-                        + "(" + field.getType().getCanonicalText() + " " + setterParameter + ") {");
-        sb.append("this."+ field.getName() + " = " + setterParameter + ";");
-        sb.append(field.getName()+ "Dep.changed();");
+                        + "(" + type + " " + setterParameter + ") {");
+        sb.append("this."+ field.getName() + ".setValue(" + setterParameter + ");");
         sb.append("}");
 
-        return sb.toString();
-    }
-
-    private String generateReactorDependencyFields(PsiField field, PsiClass psiClass){
-        String fieldName = field.getName();
-        StringBuilder sb = new StringBuilder("private ReactorDependency " + fieldName + "Dep = new ReactorDependency();");
         return sb.toString();
     }
 
@@ -103,7 +102,6 @@ public class CodeGenerator {
         for (PsiField mField : mFields) {
             psiMethods.add(elementFactory.createMethodFromText(generateGetters(mField, mClass), mClass));
             psiMethods.add(elementFactory.createMethodFromText(generateSetters(mField, mClass), mClass));
-            psiFields.add(elementFactory.createFieldFromText(generateReactorDependencyFields(mField, mClass), mClass));
         }
 
         JavaCodeStyleManager styleManager = JavaCodeStyleManager.getInstance(mClass.getProject());
